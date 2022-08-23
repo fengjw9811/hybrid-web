@@ -21,19 +21,19 @@ export default {
           nIcon: require('@imgs/home-n.svg'),
           hIcon: require('@imgs/home-h.svg'),
           name: '首页',
-          componentName: 'home'
+          componentName: 'home-page'
         },
         {
           nIcon: require('@imgs/shopping-n.svg'),
           hIcon: require('@imgs/shopping-h.svg'),
           name: '购物车',
-          componentName: 'shopping'
+          componentName: 'shopping-cart'
         },
         {
           nIcon: require('@imgs/my-n.svg'),
           hIcon: require('@imgs/my-h.svg'),
           name: '我的',
-          componentName: 'my'
+          componentName: 'personal-center'
         }
       ],
       selectItemIndex: 0
