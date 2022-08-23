@@ -1,5 +1,7 @@
 $rootFontSize: 375 / 10;
 
 @function px2rem($px) {
-  @return $px / $rootFontSize;
+  @return $px / $rootFontSize + rem;
 }
+
+$infoSize: px2rem(14);
