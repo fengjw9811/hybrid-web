@@ -75,20 +75,20 @@ export default {
         {
           id: '5',
           icon: require('@imgs/jingDongMiaoSha-5.jpg'),
-          oldPrice: '',
-          price: ''
+          oldPrice: '1050',
+          price: '588'
         },
         {
           id: '6',
           icon: require('@imgs/jingDongMiaoSha-6.jpg'),
-          oldPrice: '',
-          price: ''
+          oldPrice: '316',
+          price: '99.9'
         },
         {
           id: '7',
           icon: require('@imgs/jingDongMiaoSha-7.jpg'),
-          oldPrice: '',
-          price: ''
+          oldPrice: '278',
+          price: '239'
         },
         {
           id: '8',
