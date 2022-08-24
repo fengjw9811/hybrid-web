@@ -1,14 +1,20 @@
 <template>
   <div class="home-page">
     <div class="home-page-content">
-      <my-swiper :swiperImgs="swiperMock" :height="swiperHeight" />
+      <my-swiper :swiperImgs="swiperData.map(item => item.icon)" :height="swiperHeight" />
       <activity-com>
-        <div class="activity-520">
-          <img v-for="(item, index) in activityMock" :key="index" :src="item" alt="">
+        <div class="activity">
+          <img v-for="(item, index) in activityData" :key="index" :src="item" alt="">
         </div>
       </activity-com>
       <model-options></model-options>
-      <seconds-kill :dataSource="secondKillMock"></seconds-kill>
+      <seconds-kill :dataSource="secondKillData"></seconds-kill>
+      <activity-com>
+        <div class="activity-pingou">
+          <img src="@imgs/haoHuoQiang.gif" alt="">
+        </div>
+      </activity-com>
+      <goods-info></goods-info>
     </div>
   </div>
 </template>
@@ -18,97 +24,23 @@ import MySwiper from './swiper/MySwiper'
 import ActivityCom from './currency/ActivityCom'
 import ModelOptions from './currency/ModelOptions'
 import SecondsKill from './seconds/SecondsKill'
+import GoodsInfo from './goods/GoodsInfo'
+import px2rem from '@js/px2rem.js'
 export default {
   components: {
     MySwiper,
     ActivityCom,
     ModelOptions,
-    SecondsKill
+    SecondsKill,
+    GoodsInfo
   },
   data: function () {
     // data为后端返回来的数据,mock为写死的数据
     return {
       swiperData: [],
-      swiperMock: [
-        require('@imgs/swiper-1.jpg'),
-        require('@imgs/swiper-2.jpg'),
-        require('@imgs/swiper-3.jpg'),
-        require('@imgs/swiper-4.jpg'),
-        require('@imgs/swiper-5.jpg'),
-        require('@imgs/swiper-6.jpg'),
-        require('@imgs/swiper-7.jpg'),
-        require('@imgs/swiper-8.jpg')
-      ],
-      swiperHeight: '184px',
+      swiperHeight: px2rem(184),
       activityData: [],
-      activityMock: [
-        require('@imgs/520-1.gif'),
-        require('@imgs/520-2.gif'),
-        require('@imgs/520-3.gif')
-      ],
-      secondKillData: [],
-      secondKillMock: [
-        {
-          id: '1',
-          icon: require('@imgs/jingDongMiaoSha-1.jpg'),
-          oldPrice: '169',
-          price: '119'
-        },
-        {
-          id: '2',
-          icon: require('@imgs/jingDongMiaoSha-2.jpg'),
-          oldPrice: '1900',
-          price: '1191'
-        },
-        {
-          id: '3',
-          icon: require('@imgs/jingDongMiaoSha-3.jpg'),
-          oldPrice: '289',
-          price: '199'
-        },
-        {
-          id: '4',
-          icon: require('@imgs/jingDongMiaoSha-4.jpg'),
-          oldPrice: '108',
-          price: '79'
-        },
-        {
-          id: '5',
-          icon: require('@imgs/jingDongMiaoSha-5.jpg'),
-          oldPrice: '1050',
-          price: '588'
-        },
-        {
-          id: '6',
-          icon: require('@imgs/jingDongMiaoSha-6.jpg'),
-          oldPrice: '316',
-          price: '99.9'
-        },
-        {
-          id: '7',
-          icon: require('@imgs/jingDongMiaoSha-7.jpg'),
-          oldPrice: '278',
-          price: '239'
-        },
-        {
-          id: '8',
-          icon: require('@imgs/jingDongMiaoSha-8.jpg'),
-          oldPrice: '',
-          price: ''
-        },
-        {
-          id: '9',
-          icon: require('@imgs/jingDongMiaoSha-9.jpg'),
-          oldPrice: '',
-          price: ''
-        },
-        {
-          id: '10',
-          icon: require('@imgs/jingDongMiaoSha-10.jpg'),
-          oldPrice: '',
-          price: ''
-        }
-      ]
+      secondKillData: []
     }
   },
   created: function () {
@@ -138,11 +70,13 @@ export default {
     width: 100%;
     height: 100%;
     background-color: $bgColor;
+    overflow: hidden;
+    overflow-y: auto;
 
     &-content {
       height: 100%;
 
-      .activity-520 {
+      .activity {
         margin-top: px2rem(-8);
         border-top-left-radius: px2rem(8);
         border-top-right-radius: px2rem(8);
@@ -150,6 +84,15 @@ export default {
         img {
           display: inline-block;
           width: 33.33%;
+        }
+      }
+
+      .activity-pingou {
+        background-color: white;
+        margin-top: $marginSize;
+
+        img {
+          width: 100%;
         }
       }
     }

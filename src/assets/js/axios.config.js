@@ -2,7 +2,7 @@ import Vue from 'vue'
 import axios from 'axios'
 
 // 设置axios请求baseurl
-axios.defaults.baseURL = 'http://localhost:3001/mock/20/jd'
+axios.defaults.baseURL = 'http://localhost:3001'
 
 // 设置拦截器
 axios.interceptors.response.use((response) => {
