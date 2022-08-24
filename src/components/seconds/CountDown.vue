@@ -1,7 +1,7 @@
 <template>
     <div class="count-down">
         <span class="count-down-endtime">{{endMoment}}点场</span>
-        <span class="count-down-surplus">{{remainingTime}}</span>
+        <span class="count-down-surplus">{{remainingTime | filterTime}}</span>
     </div>
 </template>
 
@@ -17,7 +17,8 @@ export default {
   data: function () {
     return {
       remainingTime: '',
-      remainingSeconds: 0
+      remainingSeconds: 0,
+      interval: undefined
     }
   },
   created: function () {
@@ -26,6 +27,9 @@ export default {
   methods: {
     // 计算剩余时间
     computedRemainingTime: function () {
+      if (this.interval) {
+        clearInterval(this.interval)
+      }
       const date = new Date()
       if (date.getHours() > this.endMoment) {
         this.remainingTime = '活动已结束'
@@ -39,7 +43,7 @@ export default {
       const minutesDiff = 60 - date.getMinutes() - 1
       const secondsDiff = 60 - date.getSeconds()
       this.remainingSeconds = hoursDiff * 3600 + minutesDiff * 60 + secondsDiff
-      setInterval(() => {
+      this.interval = setInterval(() => {
         this.remainingSeconds -= 1
       }, 1000)
     }
@@ -50,6 +54,12 @@ export default {
       const minutes = Math.floor(remainingSeconds / 60) % 60
       const seconds = remainingSeconds % 60
       this.remainingTime = hours + ':' + minutes + ':' + seconds
+      if (remainingSeconds === 0) {
+        this.computedRemainingTime()
+      }
+    },
+    endMoment: function () {
+      this.computedRemainingTime()
     }
   }
 }
